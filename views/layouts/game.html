@@ -1,0 +1,61 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/game.css" type="text/css" media="all">
+	<style>
+	@font-face {
+	 font-family: "Lombardic";
+	 src: url("/fonts/Lombardic.ttf") format("truetype");
+	}
+	@font-face {
+	 font-family: "Jarrow";
+	 src: url("/fonts/Jarrow.ttf") format("truetype");
+	}
+	</style>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+	<script src="/js/lib/game.js"></script>
+	<script src="/js/lib/tpl.js"></script>
+	<script src="/js/lib/user.js"></script>
+	<script src="/js/lib/player.js"></script>
+	
+ <script>
+ const Socket = io();
+ 
+ Socket.on('connect', () => {
+  console.log(Socket.id);
+ });
+ 
+ Socket.on('disconnect', (reason) => {
+  console.log(reason);
+ });
+ 
+ var DC = {};
+ </script>
+ <script src="/js/controllers/region.js"></script>
+ <script>
+ DC.init = () => {
+  DC.Tpl = new Tpl();
+  DC.User = new User({id: {{User.id}}, name: "{{User.name}}", email: "{{User.email}}", hasChar: {{User.hasChar}}, firstRun: {{User.firstRun}}, chat: "{{User.chat}}"});
+  DC.Player = new Player({owner: {{Player.owner}}, rankString: '{{Player.rankString}}', nameAndRank: '{{Player.nameRankString}}', region: '{{Player.region}}', charclass: '{{Player.charClass}}', background: '{{Player.background}}', guild: {{Player.guild}}, effects: '{{Player.effects}}', stats: { guts: {{Player.stats.guts}}, gutsMax: {{Player.stats.gutsMax}}, wits: {{Player.stats.wits}}, witsMax: {{Player.stats.witsMax}}, charm: {{Player.stats.charm}}, charmMax: {{Player.stats.charmMax}}, attack: {{Player.stats.attack}}, defend: {{Player.stats.defend}}, skill: {{Player.stats.skill}} }, skills: { fighter: { skill: {{Player.skills.fighter.skill}}, max: {{Player.skills.fighter.max}} }, magic: { skill: {{Player.skills.magic.skill}}, max: {{Player.skills.magic.max}} }, trade: { skill: {{Player.skills.trade.skill}}, max: {{Player.skills.trade.max}} } }, level: {{Player.level}}, experience: {{Player.experience}}, quests: {{Player.quests}}, questsMax: {{Player.questsMax}}, cash: {{Player.cash}}, rank: {{Player.rank}}, storage: {{Player.storage}}, storageMax: {{Player.storageMax}}, fame: {{Player.fame}}, favor: {{Player.favor}}, skilled: {{Player.skilled}} });
+  
+  DC.Game = new Game();
+ };
+ DC.init();
+ </script>
+</head>
+<body>
+ <div id="loading"></div>
+ <div class="container-fluid mt-auto h-100">
+  {{{body}}}
+ </div>
+</body>
+</html>

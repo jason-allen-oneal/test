@@ -1,0 +1,137 @@
+html{
+	height: 100%;
+}
+
+body {
+	margin: 0 auto;
+	background-color: #67945f;
+	height:100%;
+}
+
+#progress {
+  font-size: 50px;
+  left: 50%;
+  letter-spacing: 0.1em;
+  margin: -25px 0 0 -100px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  width: 200px;
+}
+
+#progressbar {
+  left: 10%;
+  position: absolute;
+  text-align: center;
+  top: 55%;
+  right: 10%;
+
+  .bar {
+    @include box-shadow(cyan 0 0 10px 1px);
+    @include transition(all 300ms);
+    background-color: cyan;
+    height: 1px;
+    display: inline-block;
+    width: 0%;
+  }
+
+  .bar.complete {
+    @include box-shadow(rgba(255, 0, 0, 0) 0 0 10px 10px);
+  }
+}
+
+/* Extra small devices (phones, less than 768px) */
+.chatDiv{
+	border: 1px solid black;
+	background: #fff;
+	height: 8em;
+	color: #000;
+	font-size: 0.575em;
+}
+
+.chatEntry{
+	border-bottom: 1px solid #000;
+}
+
+.chatDate{
+	font-size: 0.7em;
+}
+
+.gameDiv {
+	margin-top: 5px;
+	background: #fff;
+	border: 5px solid black;
+	height: 40em;
+}
+
+.statBar {
+	font-size: 0.5em;
+	color: #fff;
+	border: 1px solid #fff;
+	background-color:#333;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.chatDiv{
+		border: 1px solid black;
+		background: #fff;
+		height: 40em;
+		color: #000;
+		font-size: 1em;
+		margin-top: 5px;
+	}
+	
+	.chatMsgInput{
+		position: absolute;
+		bottom: 5px;
+	}
+
+	.statBar {
+		font-size: 1em;
+		color: #fff;
+		border: 1px solid #fff;
+		background-color:#333;
+	}
+}
+
+.character-sheet .exp-bar{
+	width:100%;
+	height:10px;
+	border:1px solid #0e4399;
+}
+
+.character-sheet .exp-bar .inner{
+	width:0;
+	height:10px;
+	border-right: 1px solid #000;
+	background: #0e4399;
+}
+
+.shop-item-container {
+	height: 100%;
+	overflow-y: scroll;
+	margin: 0;
+	padding: 0;
+	border: 2px solid #ccc;
+	font-size: 16px;
+	font-family: Arial, sans-serif;
+	-webkit-overflow-scrolling: touch;
+}
+
+.shop-item {
+	padding: 10px 20px;
+	border-bottom: 1px solid #ccc;
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	&:nth-child(even) {
+		background: #f8f8f8;
+	}
+}
+
+.shop-item-selected {
+	background-color: rgba(255,255,255,0.4);
+}
